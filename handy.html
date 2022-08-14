@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handy Header</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+        :root {
+            --primaryColor: #CB8161;
+            --secondaryColor: #FFFFFF;
+            --themeFont: "Poppins";
+        }
+
+        .s1201_universal * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--themeFont);
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .s1201_container {
+            max-width: 1340px;
+            margin: 0 auto;
+            padding: 0px 20px;
+        }
+
+        .s1201_header_main_wrapper {
+            width: 100%;
+            border-bottom: 1px solid rgba(0, 0, 0, 5%);
+        }
+
+        .s1201_header_content_wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px 0px;
+        }
+
+        .s1201_header_left_side_content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 45px;
+            width: 73px;
+        }
+
+        .s1201_menu_nav_list_wrapper {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .s1201_menu_nav_list {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 30px;
+            width: 30px;
+            position: relative;
+        }
+
+        .s1201_menu_nav_list:nth-child(2) {
+            display: none;
+        }
+
+        .s1201_menu_nav_list:nth-child(3) {
+            display: none;
+        }
+
+        .s1201_menu_nav_list:nth-child(4) {
+            display: none;
+        }
+
+        svg {
+            display: flex;
+        }
+
+        /* mobile menu list navigation */
+        .s1201_mobile_menu_wrapper {
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            border-top: 1px solid rgba(0, 0, 0, 10%);
+
+        }
+
+        .s1201_mobile_menu_content_wrapper {
+            padding: 15px 0px;
+        }
+
+        .s1201_mobile_menu_list_wrapper {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            justify-content: space-around;
+            gap: 58px;
+        }
+
+        .s1201_mobile_menu_list {
+            height: 30px;
+            width: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* ==================================
+        =============Active Icon=============
+        ====================================== */
+        .s012_active_icon.s1201_menu_nav_list svg path {
+            fill: var(--primaryColor);
+        }
+
+        .s012_notification_batch::after {
+            content: "";
+            height: 6px;
+            width: 6px;
+            border-radius: 50%;
+            position: absolute;
+            background-color: var(--primaryColor);
+            top: 6px;
+            left: 61%;
+            border: 1px solid white;
+        }
+
+        .s1201_mobile_notification_batch::after {
+            content: "";
+            height: 6px;
+            width: 6px;
+            border-radius: 50%;
+            position: absolute;
+            background-color: var(--primaryColor);
+            top: 6px;
+            left: 57%;
+            border: 1px solid white;
+        }
+
+        .s1201_active_mobile_icon.s1201_mobile_menu_list svg path {
+            fill: black;
+        }
+
+        .s1201_active_mobile_icon.s1201_mobile_menu_list svg g {
+            opacity: 1;
+        }
+
+
+        /* =========================================================== 
+        ================== Sidebar area style=========================
+        ==============================================================
+        */
+        .s1201_open_sidebar.s1201_mobile_sidebar_main_wrapper {
+            height: 100vh;
+            width: 100%;
+            position: fixed;
+            top: 0px;
+            left: 0;
+            background-color: rgba(30, 39, 46, 80%);
+            transition: all 0.5s ease-in-out;
+        }
+
+        .s1201_mobile_sidebar_menu_content_wrapper {
+            max-width: 263px;
+            height: 100vh;
+            background-color: white;
+            padding: 30px;
+            position: absolute;
+            left: -100%;
+            top: 0;
+            transition: all 0.5s ease-in-out;
+            visibility: hidden;
+        }
+
+        .s1201_open_sidebar .s1201_mobile_sidebar_menu_content_wrapper {
+            left: 0;
+            visibility: visible;
+        }
+
+        .s1201_sidebar_menulist_wrapper {
+            height: calc(100vh - 200px);
+            overflow: scroll;
+            overflow-x: hidden;
+        }
+
+        .s1201_sidebar_menu_list_item_wrapper {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .s1201_sidebar_menu_list_item {
+            font-size: 12px;
+            font-weight: 500;
+            color: rgba(0, 0, 0, 80%);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .s1201_sidebar_close_btn_wrapper {
+            position: absolute;
+            left: 107%;
+            top: 32px;
+            z-index: 1;
+        }
+
+        .s1201_all_catagories_title_wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .s1201_sidebar_info_section {
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
+        }
+
+        .s1201_all_catagories_title_content_wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        /* sub catagoris style */
+        .s1201_sub_menu_items_main_wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            list-style: none;
+            border-left: 1px solid rgba(0, 0, 0, 10%);
+            margin-top: 20px;
+            display: none;
+        }
+
+        .s1201_sub_menu_item {
+            font-size: 12px;
+            font-weight: 400;
+            color: rgba(0, 0, 0, 60%);
+            padding-left: 9px;
+        }
+
+        .s1201_sub_menu_item_wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* sub sub catagories style */
+        .s1201_sub_sub_menu_items_main_wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            list-style: none;
+            border-left: 1px solid rgba(0, 0, 0, 10%);
+            margin-top: 12px;
+            display: none;
+        }
+
+        .s1201_sub_sub_menu_item {
+            font-size: 12px;
+            font-weight: 400;
+            color: rgba(0, 0, 0, 60%);
+            padding-left: 9px;
+        }
+
+        .s1201_sub_sub_menu_item_wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* sub sub sub catagories */
+        .s1201_sub_sub_sub_menu_items_main_wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            list-style: none;
+            border-left: 1px solid rgba(0, 0, 0, 10%);
+            margin-top: 12px;
+            display: none;
+        }
+
+        .s1201_sub_sub_sub_menu_item {
+            font-size: 12px;
+            font-weight: 400;
+            color: rgba(0, 0, 0, 60%);
+            padding-left: 9px;
+        }
+
+        .s1201_sub_sub_sub_menu_item_wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+
+
+        /* ==================== ACTIVE sidebar menu class is here ==================== */
+
+        /* active sub menu */
+        .s1201_active_menu.s1201_sidebar_menu_list_item .s1201_sub_menu_items_main_wrapper {
+            display: flex;
+        }
+
+        .s1201_active_menu.s1201_sidebar_menu_list_item .s1201_all_catagories_title_wrapper .s1201_menu_icon {
+            transform: rotate(-180deg);
+        }
+
+
+        /* active sub sub catagories */
+        .s1201_active_menu.s1201_sub_menu_item .s1201_sub_menu_item_wrapper .s1201_menu_icon {
+            transform: rotate(-180deg);
+        }
+
+        .s1201_active_menu.s1201_sub_menu_item .s1201_sub_menu_item_wrapper .s1201_menu_icon svg path {
+            fill: black;
+            opacity: 1;
+        }
+
+        .s1201_active_menu.s1201_sub_menu_item .s1201_sub_sub_menu_items_main_wrapper {
+            display: flex;
+        }
+
+        .s1201_active_menu.s1201_sub_menu_item .s1201_sub_menu_item_wrapper .s1201_current_active_menu {
+            color: black;
+        }
+
+        /* active sub sub sub catagoris */
+        .s1201_active_menu.s1201_sub_sub_menu_item .s1201_sub_sub_menu_item_wrapper .s1201_menu_icon {
+            transform: rotate(-180deg);
+        }
+
+        .s1201_active_menu.s1201_sub_sub_menu_item .s1201_sub_sub_menu_item_wrapper .s1201_menu_icon svg path {
+            fill: black;
+            opacity: 1;
+        }
+
+        .s1201_active_menu.s1201_sub_sub_menu_item .s1201_sub_sub_sub_menu_items_main_wrapper {
+            display: flex;
+        }
+
+        .s1201_active_menu.s1201_sub_sub_menu_item .s1201_sub_sub_menu_item_wrapper .s1201_current_active_menu {
+            color: black;
+        }
+
+
+        .s1201_sidebar_footer_item_wrapper {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 20px;
+
+        }
+
+        .s1201_get_in_touch_text {
+            font-size: 12px;
+            font-weight: 600;
+            color: black;
+        }
+
+        .s1201_get_in_touch_text_wrapper {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .s1201_hamburger_icon {
+            display: none;
+        }
+
+        /* ===========================Search popup main Wrapper====================== */
+        .s0601_search_popup_main_wrapper {
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(30, 39, 46, 85%);
+            position: fixed;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            transition: all .4s linear;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* active search popup */
+        .s0601_active_search_popup {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .s0601_popup_close_btn_wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .s0601_search_popup_content_wrapper {
+            width: 360px;
+            padding: 85px 20px 0px 20px;
+        }
+
+        .s0601_search_input_wrapper {
+            margin-top: 30px;
+        }
+
+        .s0601_search_input {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            outline: none;
+            font-size: 12px;
+            font-weight: 400;
+            color: rgba(0, 0, 0, 100%);
+        }
+
+
+        .s0601_search_result_wrapper {
+            background-color: white;
+            margin-top: 10px;
+        }
+
+        .s0601_search_result_all_items {
+            list-style: none;
+
+        }
+
+        .s0601_search_result_item {
+            font-size: 12px;
+            font-weight: 400;
+            color: rgba(0, 0, 0, 100%);
+            padding: 15px;
+            border-bottom: 1px solid rgba(30, 39, 46, 10%);
+        }
+
+
+        @media screen and (min-width:768px) {
+            .s1201_header_content_wrapper {
+                padding: 15px 0px;
+            }
+
+            .s1201_header_left_side_content {
+                height: 50px;
+                width: 83px;
+            }
+
+            .s1201_menu_nav_list:nth-child(2) {
+                display: flex;
+
+            }
+
+            .s1201_menu_nav_list:nth-child(3) {
+                display: flex;
+
+            }
+
+            .s1201_menu_nav_list:nth-child(4) {
+                display: flex;
+
+            }
+
+            .s1201_mobile_menu_wrapper {
+                display: none;
+            }
+
+
+            /* ===================================================================================
+            ==============================sidebar style here======================================
+            ======================================================================================= */
+
+            .s1201_sidebar_close_btn_wrapper {
+                display: none;
+            }
+
+            .s1201_mobile_sidebar_footer_wrapper {
+                display: none;
+            }
+
+            .s1201_hamburger_icon {
+                display: block;
+            }
+
+            .s01201_catagories_arrow.s1201_menu_icon svg path {
+                fill: var(--secondaryColor);
+            }
+
+            .s1201_remove_all_title {
+                display: none;
+            }
+
+            .s1201_open_sidebar.s1201_mobile_sidebar_main_wrapper {
+                height: unset;
+                width: unset;
+                position: unset;
+                top: unset;
+                left: unset;
+                background-color: unset;
+                transition: unset;
+            }
+
+            .s1201_sidebar_menulist_wrapper {
+                height: unset;
+                overflow: unset;
+                overflow-x: unset;
+            }
+
+            .s1201_mobile_sidebar_menu_content_wrapper {
+                visibility: visible;
+            }
+
+            .s1201_mobile_sidebar_menu_content_wrapper {
+                max-width: unset;
+                height: unset;
+                background-color: unset;
+                padding: unset;
+                position: unset;
+                left: unset;
+                top: unset;
+                transition: unset;
+            }
+
+            .s1201_sidebar_menu_list_item_wrapper {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                list-style: none;
+                gap: 20px;
+                height: 40px;
+            }
+
+            .s1201_all_catagories_title_wrapper {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 22px;
+                width: 201px;
+                background-color: var(--primaryColor);
+                padding: 0px 30px;
+                color: var(--secondaryColor);
+            }
+
+
+            /* rotate all catagories icon on hover */
+            .s1201_active_menu.s1201_sidebar_menu_list_item .s1201_all_catagories_title_wrapper .s1201_menu_icon {
+                transform: rotate(-180deg);
+                transition: all .3s linear;
+            }
+
+            .s1201_active_menu.s1201_sidebar_menu_list_item .s1201_all_catagories_title_wrapper .s1201_menu_icon {
+                transform: rotate(0);
+            }
+
+            .s1201_sub_menu_items_main_wrapper {
+                display: unset;
+                flex-direction: column;
+                position: absolute;
+                background-color: white;
+                gap: 15px;
+                list-style: none;
+                border-left: unset;
+                width: 202px;
+                padding-top: 25px;
+                padding-bottom: 25px;
+                display: none;
+                transition: all .3s linear;
+                margin-top: unset;
+                top: 100%;
+                border: 1px solid rgba(0, 0, 0, 5%);
+
+            }
+
+            /* active sub catagoris on hover */
+            .s1201_active_menu.s1201_sidebar_menu_list_item .s1201_sub_menu_items_main_wrapper {
+                display: flex;
+            }
+
+            /*  .s1201_sidebar_menu_list_item:hover .s1201_sub_menu_items_main_wrapper {
+                display: flex;
+                transition: all 0.4s linear;
+            }
+
+            .s1201_active_menu.s1201_sub_menu_item .s1201_sub_sub_menu_items_main_wrapper {
+                display: none;
+            } */
+
+            /* active sub sub catagoris on hover */
+
+            .s1201_sub_menu_item .s1201_sub_sub_menu_items_main_wrapper {
+                display: none;
+            }
+
+            /* .s1201_sub_menu_item:hover .s1201_sub_sub_menu_items_main_wrapper {
+                display: flex;
+            } */
+
+            /* active sub sub sub catagoris on hover */
+            .s1201_active_menu.s1201_sub_sub_menu_item .s1201_sub_sub_sub_menu_items_main_wrapper {
+                display: flex;
+            }
+
+            /* .s1201_sub_sub_menu_item:hover .s1201_sub_sub_sub_menu_items_main_wrapper {
+                display: flex;
+            } */
+
+            .s1201_sub_menu_item {
+                font-size: 14px;
+                font-weight: 400;
+                color: rgba(0, 0, 0, 60%);
+                padding-left: unset;
+                padding-left: 25px;
+                padding-right: 25px;
+                transition: all .3s linear;
+                align-items: center;
+            }
+
+            .s1201_sub_menu_item .s1201_sub_menu_item_wrapper {
+                padding-bottom: 10px;
+                border-bottom: 1px solid rgba(0, 0, 0, 5%);
+            }
+
+            .s1201_sub_menu_item:last-child .s1201_sub_menu_item_wrapper {
+                padding-bottom: 0px;
+                border-bottom: 0px solid rgba(0, 0, 0, 5%);
+            }
+
+
+            .s1201_sub_sub_menu_item_wrapper {
+                padding-bottom: 10px;
+                border-bottom: 1px solid rgba(0, 0, 0, 5%);
+            }
+
+            .s1201_sub_sub_menu_item:last-child .s1201_sub_sub_menu_item_wrapper {
+                padding-bottom: 0px;
+                border-bottom: 0px solid rgba(0, 0, 0, 5%);
+            }
+
+            .s1201_sub_sub_sub_menu_item_wrapper {
+                padding-bottom: 10px;
+                border-bottom: 1px solid rgba(0, 0, 0, 5%);
+            }
+
+            .s1201_sub_sub_sub_menu_item:last-child .s1201_sub_sub_sub_menu_item_wrapper {
+                padding-bottom: 0px;
+                border-bottom: 0px solid rgba(0, 0, 0, 5%);
+            }
+
+            .s1201_active_menu.s1201_sub_menu_item {
+                color: #D9736A;
+            }
+
+            .s1201_active_menu.s1201_sub_sub_menu_item {
+                color: #D9736A;
+            }
+
+            .s1201_active_menu.s1201_sub_sub_sub_menu_item {
+                color: #D9736A;
+            }
+
+            /*  .s1201_sub_menu_item .s1201_menu_icon {
+                opacity: 0;
+                transition: all 0.1s linear;
+            }
+
+            .s1201_active_menu.s1201_sub_menu_item .s1201_menu_icon svg path {
+                fill: var(--primaryColor);
+                opacity: 1;
+            }
+
+            .s1201_sub_menu_item:hover.s1201_sub_menu_item .s1201_menu_icon {
+                opacity: 1;
+                color: var(--primaryColor);
+            }
+
+            .s1201_sub_sub_menu_item .s1201_sub_sub_menu_item_wrapper .s1201_menu_icon svg {
+                opacity: 0;
+                fill: var(--primaryColor);
+                transition: all 0.1s linear;
+            }
+
+            .s1201_active_menu.s1201_sub_sub_menu_item .s1201_sub_sub_menu_item_wrapper .s1201_menu_icon svg {
+                opacity: 1;
+
+            } */
+
+
+
+            .s1201_sub_menu_item_wrapper,
+            .s1201_sub_sub_menu_item_wrapper,
+            .s1201_sub_sub_sub_menu_item_wrapper {
+                height: 30px;
+            }
+
+            .s1201_sub_sub_menu_items_main_wrapper {
+                flex-direction: column;
+                gap: 15px;
+                list-style: none;
+                border-left: unset;
+                margin-top: unset;
+                display: none;
+                position: absolute;
+                left: 100%;
+                top: 0;
+                width: 202px;
+                padding-top: 25px;
+                padding-bottom: 25px;
+                background-color: white;
+                display: none;
+                border: 1px solid rgba(0, 0, 0, 5%);
+            }
+
+            .s1201_sub_sub_menu_item {
+                font-size: 14px;
+                font-weight: 400;
+                color: rgba(0, 0, 0, 60%);
+                padding-left: unset;
+                padding-left: 25px;
+                padding-right: 25px;
+                transition: all .3s linear;
+            }
+
+            .s1201_sub_sub_sub_menu_items_main_wrapper {
+                display: none;
+                flex-direction: column;
+                gap: 15px;
+                list-style: none;
+                border-left: unset;
+                margin-top: unset;
+                position: absolute;
+                left: 100%;
+                top: 0;
+                width: 202px;
+                padding-top: 25px;
+                padding-bottom: 25px;
+                background-color: white;
+                border: 1px solid rgba(0, 0, 0, 5%);
+            }
+
+            .s1201_sub_sub_sub_menu_item {
+                font-size: 14px;
+                font-weight: 400;
+                color: rgba(0, 0, 0, 60%);
+                padding-left: unset;
+                padding-left: 25px;
+                padding-right: 25px;
+                transition: all .3s linear;
+            }
+
+            .s1201_sidebar_menu_list_item {
+                font-size: 14px;
+                position: relative;
+                height: 100%;
+                line-height: 40px;
+            }
+
+            .s1201_active_menu.s1201_sub_menu_item .s1201_sub_menu_item_wrapper .s1201_current_active_menu {
+                color: unset;
+            }
+
+            .s1201_active_menu.s1201_sub_sub_menu_item .s1201_sub_sub_menu_item_wrapper .s1201_current_active_menu {
+                color: unset;
+            }
+
+            .s1201_active_menu.s1201_sub_menu_item .s1201_sub_menu_item_wrapper .s1201_menu_icon svg path {
+                fill: var(--primaryColor);
+
+            }
+
+            .s1201_active_menu.s1201_sub_sub_menu_item .s1201_sub_sub_menu_item_wrapper .s1201_menu_icon svg path {
+                fill: var(--primaryColor);
+            }
+
+            .s1201_active_menu.s1201_sub_menu_item .s1201_sub_menu_item_wrapper .s1201_menu_icon {
+                transform: rotate(-90deg);
+            }
+
+
+            .s1201_sub_menu_item .s1201_sub_menu_item_wrapper .s1201_menu_icon {
+                transform: rotate(-90deg);
+
+            }
+
+            .s1201_sub_sub_menu_item .s1201_sub_sub_menu_item_wrapper .s1201_menu_icon {
+                transform: rotate(-90deg);
+            }
+
+            .s1201_menu_icon {
+                transform: rotate(180deg);
+                transition: all 0.4s linear;
+            }
+
+            .s1201_active_menu.s1201_sub_sub_menu_item .s1201_sub_sub_menu_item_wrapper .s1201_menu_icon {
+                transform: rotate(-90deg);
+            }
+
+            .s1201_sidebar_info_section {
+                flex-direction: row;
+                gap: 20px;
+            }
+
+            .s1201_all_catagories_title_content_wrapper {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            /* ===========================Search popup main Wrapper====================== */
+
+
+            .s0601_search_popup_content_wrapper {
+                width: 690px;
+                padding: 100px 20px 0px 20px;
+            }
+
+            .s0601_search_input_wrapper {
+                margin-top: 25px;
+            }
+
+            .s0601_search_input {
+                width: 100%;
+                padding: 14px 15px;
+                font-size: 14px;
+            }
+
+        }
+
+        @media screen and (min-width:1025px) {
+            .s1201_header_left_side_content {
+                height: 60px;
+                width: 100px;
+            }
+
+            .s1201_header_content_wrapper {
+                padding: 20px 0px;
+            }
+
+            .s1201_sidebar_menu_list_item_wrapper {
+                gap: 30px;
+            }
+
+            .s1201_sidebar_info_section {
+                gap: 30px;
+            }
+
+            .s1201_all_catagories_title_wrapper {
+                gap: 15px;
+                padding: 0px 20px;
+            }
+
+            .s1201_all_catagories_title_content_wrapper {
+                gap: 42px;
+
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="s1201_header_main_section s1201_universal">
+
+        <!-- header navigatiob area -->
+        <div class="s1201_header_main_wrapper">
+            <div class="s1201_container">
+                <div class="s1201_header_content_wrapper">
+                    <div class="s1201_header_left_side_content">
+                        <span><svg xmlns="http://www.w3.org/2000/svg" width="83.202" height="31.739"
+                                viewBox="0 0 83.202 31.739">
+                                <g id="logo" transform="translate(-332.96 -421.84)">
+                                    <path id="Path_1852" data-name="Path 1852"
+                                        d="M391.976,511.049v2.571a.752.752,0,1,1-.844.013v-2.584h-1.685v7.181h-7.1v-7.181h-1.693v2.584a.755.755,0,1,1-.844-.013v-2.571h-1.691v18.779h4.227v-7.967h7.1v7.967h4.227V511.049Z"
+                                        transform="translate(-41.138 -81.263)" fill="#cb8161" />
+                                    <path id="Path_1853" data-name="Path 1853"
+                                        d="M593.79,557.6a9.35,9.35,0,0,1,2.981.407,4.633,4.633,0,0,1,1.911,1.165,4.29,4.29,0,0,1,1.016,1.843,9.1,9.1,0,0,1,.3,2.412v8.4q-.868.19-2.412.447a23.189,23.189,0,0,1-3.74.257,11.857,11.857,0,0,1-2.507-.244,5.435,5.435,0,0,1-1.937-.8,3.654,3.654,0,0,1-1.247-1.45,5,5,0,0,1-.434-2.195,4.158,4.158,0,0,1,.5-2.114,3.857,3.857,0,0,1,1.341-1.382,6.063,6.063,0,0,1,1.924-.745,10.806,10.806,0,0,1,2.249-.23,12.865,12.865,0,0,1,1.4.068,6.275,6.275,0,0,1,.989.176v-.379a2.236,2.236,0,0,0-.623-1.653,3.019,3.019,0,0,0-2.168-.623,13.856,13.856,0,0,0-2.032.149,8.752,8.752,0,0,0-1.734.42l-.515-3.252q.352-.108.881-.23t1.152-.217q.623-.095,1.314-.163T593.79,557.6Zm.325,11.815q.6,0,1.138-.027a7.782,7.782,0,0,0,.867-.081v-3.062q-.244-.054-.732-.108a8.162,8.162,0,0,0-.894-.054,8.074,8.074,0,0,0-1.07.068,2.805,2.805,0,0,0-.881.258,1.509,1.509,0,0,0-.6.515,1.433,1.433,0,0,0-.217.813,1.384,1.384,0,0,0,.637,1.314A3.518,3.518,0,0,0,594.115,569.415Z"
+                                        transform="translate(-232.068 -123.667)" fill="#cb8161" />
+                                    <path id="Path_1854" data-name="Path 1854"
+                                        d="M766.6,559.021a22.591,22.591,0,0,1,2.656-.556,21.838,21.838,0,0,1,3.414-.257,8.324,8.324,0,0,1,3.021.474,4.543,4.543,0,0,1,1.91,1.341,5.236,5.236,0,0,1,1,2.059,10.971,10.971,0,0,1,.3,2.656v8.048h-4.038v-7.56a5.447,5.447,0,0,0-.515-2.764,2.1,2.1,0,0,0-1.924-.813q-.434,0-.921.041t-.867.095v11H766.6Z"
+                                        transform="translate(-395.014 -124.221)" fill="#cb8161" />
+                                    <path id="Path_1855" data-name="Path 1855"
+                                        d="M951.428,506.372q-.543.163-1.247.312t-1.477.257q-.772.108-1.572.176t-1.531.068a8.967,8.967,0,0,1-3.143-.515,6.308,6.308,0,0,1-2.331-1.477,6.4,6.4,0,0,1-1.45-2.33,8.886,8.886,0,0,1-.5-3.076,10.53,10.53,0,0,1,.434-3.13,6.81,6.81,0,0,1,1.247-2.371,5.337,5.337,0,0,1,1.992-1.49,6.681,6.681,0,0,1,2.7-.515,6.349,6.349,0,0,1,1.5.163,8.163,8.163,0,0,1,1.341.461v-6.449l4.038-.65ZM942.3,499.6a4.946,4.946,0,0,0,.84,3.008,2.9,2.9,0,0,0,2.493,1.138q.542,0,1-.041t.759-.095v-7.344a3.514,3.514,0,0,0-.989-.406,4.768,4.768,0,0,0-1.233-.163Q942.3,495.695,942.3,499.6Z"
+                                        transform="translate(-551.308 -58.266)" fill="#cb8161" />
+                                    <path id="Path_1856" data-name="Path 1856"
+                                        d="M1119.333,561.859q-1.223,4.119-2.554,7.723t-2.907,6.991a15.871,15.871,0,0,1-1.14,2.073,6.383,6.383,0,0,1-1.249,1.409,4.4,4.4,0,0,1-1.533.813,6.944,6.944,0,0,1-1.994.257,8.153,8.153,0,0,1-1.751-.176,7.812,7.812,0,0,1-1.316-.393l.7-3.225a6.912,6.912,0,0,0,1.111.3,6.27,6.27,0,0,0,1.031.081,2.257,2.257,0,0,0,1.667-.583,4.687,4.687,0,0,0,.99-1.612q-1.383-2.709-2.766-6.083a75.71,75.71,0,0,1-2.6-7.574h4.282q.272,1.057.64,2.29t.776,2.493q.408,1.26.83,2.452t.8,2.168q.353-.976.734-2.168t.748-2.452q.367-1.26.708-2.493t.612-2.29Z"
+                                        transform="translate(-703.17 -127.547)" fill="#cb8161" />
+                                    <path id="Path_1857" data-name="Path 1857"
+                                        d="M407.877,432.5v-4.8a5.852,5.852,0,1,0-11.7,0v4.8a.522.522,0,1,0,.383.007v-4.812a5.468,5.468,0,1,1,10.937,0V432.5a.527.527,0,1,0,.383-.008Z"
+                                        transform="translate(-57.27 0)" fill="#3f241e" />
+                                    <path id="Path_1858" data-name="Path 1858"
+                                        d="M336.983,511.049l-4.023,18.16,2.05-1.041,1.973,1.661Z"
+                                        transform="translate(0 -81.263)" fill="#3f241e" />
+                                </g>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="s1201_header_right_side_content">
+                        <ul class="s1201_menu_nav_list_wrapper">
+                            <li class="s1201_menu_nav_list">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                                        <path id="Path_125" data-name="Path 125"
+                                            d="M15.968,15.027,11.8,10.857a6.668,6.668,0,1,0-.941.941l4.169,4.169ZM6.647,11.973a5.326,5.326,0,1,1,5.326-5.326,5.326,5.326,0,0,1-5.326,5.326Z"
+                                            transform="translate(0.032 0.032)" />
+                                    </svg>
+                                </span>
+                            </li>
+                            <li class="s1201_menu_nav_list s012_active_icon">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16">
+                                        <g id="User" transform="translate(406 40.984)">
+                                            <path
+                                                d="M -394.50048828125 -25.48419189453125 L -405.5 -25.48419189453125 L -405.5 -28.34601211547852 C -405.4979248046875 -29.89077186584473 -404.2395324707031 -31.14924240112305 -402.6948547363281 -31.15069198608398 L -397.30517578125 -31.15069198608398 C -395.7605285644531 -31.14924240112305 -394.5021362304688 -29.89083099365234 -394.50048828125 -28.34547233581543 L -394.50048828125 -25.48419189453125 Z M -400 -33.48395156860352 C -401.93017578125 -33.48395156860352 -403.50048828125 -35.05410003662109 -403.50048828125 -36.98407363891602 C -403.50048828125 -38.91404342651367 -401.93017578125 -40.48419189453125 -400 -40.48419189453125 C -398.0700988769531 -40.48419189453125 -396.5 -38.91404342651367 -396.5 -36.98407363891602 C -396.5 -35.05410003662109 -398.0700988769531 -33.48395156860352 -400 -33.48395156860352 Z"
+                                                stroke="none" />
+                                            <path
+                                                d="M -395.00048828125 -25.98419189453125 L -395.00048828125 -28.34494209289551 C -395.0018310546875 -29.61514282226562 -396.0361328125 -30.64950180053711 -397.30517578125 -30.65069198608398 L -402.6943664550781 -30.65069198608398 C -403.9639892578125 -30.64950180053711 -404.998291015625 -29.61502265930176 -405 -28.34601211547852 L -405 -25.98419189453125 L -395.00048828125 -25.98419189453125 M -400 -33.98395156860352 C -398.3457946777344 -33.98395156860352 -397 -35.32980346679688 -397 -36.98407363891602 C -397 -38.63833999633789 -398.3457946777344 -39.98419189453125 -400 -39.98419189453125 C -401.6544799804688 -39.98419189453125 -403.00048828125 -38.63833999633789 -403.00048828125 -36.98407363891602 C -403.00048828125 -35.32980346679688 -401.6544799804688 -33.98395156860352 -400 -33.98395156860352 M -394.00048828125 -24.98419189453125 L -406 -24.98419189453125 L -406 -28.34601211547852 C -405.99755859375 -30.17059135437012 -404.52001953125 -31.64898109436035 -402.6953125 -31.65069198608398 L -397.30517578125 -31.65069198608398 C -395.48095703125 -31.64898109436035 -394.00244140625 -30.17059135437012 -394.00048828125 -28.34601211547852 L -394.00048828125 -24.98419189453125 Z M -400 -32.98395156860352 C -402.20947265625 -32.98395156860352 -404.00048828125 -34.77496337890625 -404.00048828125 -36.98407363891602 C -404.00048828125 -39.19330215454102 -402.20947265625 -40.98419189453125 -400 -40.98419189453125 C -397.791015625 -40.98419189453125 -396 -39.19330215454102 -396 -36.98407363891602 C -396 -34.77496337890625 -397.791015625 -32.98395156860352 -400 -32.98395156860352 Z"
+                                                stroke="none" fill="#000" />
+                                        </g>
+                                    </svg>
+                                </span>
+                            </li>
+                            <li class="s1201_menu_nav_list">
+                                <span class="s012_notification_batch">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14.921"
+                                        viewBox="0 0 16 14.921">
+                                        <g id="heart_1_" data-name="heart (1)" transform="translate(0.005 -0.917)">
+                                            <path
+                                                d="M 7.995071411132812 15.22568702697754 L 7.898712635040283 15.15750217437744 C 7.597802639007568 14.94311237335205 0.4983528554439545 9.836672782897949 0.4983528554439545 5.615072727203369 L 0.4983528554439545 5.605642795562744 L 0.4979928433895111 5.596222400665283 C 0.414851039648056 3.392460584640503 2.135782241821289 1.520933985710144 4.336857795715332 1.417200803756714 C 5.675693035125732 1.443305969238281 6.908817768096924 2.186011075973511 7.557612895965576 3.358222484588623 L 7.995072841644287 4.148602485656738 L 8.432533264160156 3.358222484588623 C 9.081328392028809 2.186021089553833 10.31445693969727 1.443315982818604 11.65329265594482 1.417201042175293 C 13.85436820983887 1.520934104919434 15.57529449462891 3.392460584640503 15.49215316772461 5.596222400665283 L 15.49179267883301 5.605642795562744 L 15.49179267883301 5.615072727203369 C 15.49179267883301 7.335052490234375 14.26566314697266 9.491192817687988 11.94595241546631 11.85039234161377 C 10.12864303588867 13.69864273071289 8.294452667236328 15.01373291015625 8.091292381286621 15.15760231018066 L 7.995071411132812 15.22568702697754 Z"
+                                                stroke="none" />
+                                            <path
+                                                d="M 4.343717575073242 1.917472839355469 C 2.423601150512695 2.016946792602539 0.9250173568725586 3.652473449707031 0.9976425170898438 5.577373504638672 L 0.9983530044555664 5.615073204040527 C 0.9983530044555664 8.708521842956543 5.467255592346191 12.76734447479248 7.994441509246826 14.61015510559082 C 8.529834747314453 14.21573638916016 10.08440399169922 13.03048801422119 11.58942222595215 11.49983406066895 C 13.81527328491211 9.236093521118164 14.99179267883301 7.201173782348633 14.99179267883301 5.615073204040527 L 14.99250316619873 5.577373504638672 C 15.06512832641602 3.652473449707031 13.5665454864502 2.016946792602539 11.64642715454102 1.917472839355469 C 10.49182510375977 1.945904731750488 9.429946899414062 2.588677406311035 8.869993209838867 3.600353240966797 L 7.995062828063965 5.181113243103027 L 7.120142936706543 3.600343704223633 C 6.560209274291992 2.588677406311035 5.498320579528809 1.945904731750488 4.343717575073242 1.917472839355469 M 4.329913139343262 0.9170036315917969 C 5.857302665710449 0.9407539367675781 7.255342483520508 1.779583930969238 7.995072841644287 3.116093635559082 C 8.73481273651123 1.779583930969238 10.13285255432129 0.9407539367675781 11.66023254394531 0.9170036315917969 C 14.15046310424805 1.025193214416504 16.08577346801758 3.124263763427734 15.99179267883301 5.615073204040527 C 15.99179267883301 10.12988376617432 8.690793037414551 15.34574317932129 8.380252838134766 15.56565380096436 L 7.995072841644287 15.83820343017578 L 7.609902381896973 15.56565380096436 C 7.299363136291504 15.34441375732422 -0.001646995544433594 10.12988376617432 -0.001646995544433594 5.615073204040527 C -0.09562778472900391 3.124263763427734 1.839682579040527 1.025193214416504 4.329913139343262 0.9170036315917969 Z"
+                                                stroke="none" fill="#000" />
+                                        </g>
+                                    </svg>
+                                </span>
+                            </li>
+                            <li class="s1201_menu_nav_list">
+                                <span class="s012_notification_batch">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                                        <g id="Union_1" data-name="Union 1" transform="translate(1863 50)"
+                                            stroke-linecap="square">
+                                            <path
+                                                d="M -1851.666748046875 -34.5003662109375 C -1852.126220703125 -34.5003662109375 -1852.5 -34.87412643432617 -1852.5 -35.33354568481445 C -1852.5 -35.79296493530273 -1852.126220703125 -36.1667366027832 -1851.666748046875 -36.1667366027832 C -1851.207275390625 -36.1667366027832 -1850.83349609375 -35.79296493530273 -1850.83349609375 -35.33354568481445 C -1850.83349609375 -34.87412643432617 -1851.207275390625 -34.5003662109375 -1851.666748046875 -34.5003662109375 Z M -1858.333251953125 -34.5003662109375 C -1858.792724609375 -34.5003662109375 -1859.16650390625 -34.87412643432617 -1859.16650390625 -35.33354568481445 C -1859.16650390625 -35.79296493530273 -1858.792724609375 -36.1667366027832 -1858.333251953125 -36.1667366027832 C -1857.873779296875 -36.1667366027832 -1857.5 -35.79296493530273 -1857.5 -35.33354568481445 C -1857.5 -34.87412643432617 -1857.873779296875 -34.5003662109375 -1858.333251953125 -34.5003662109375 Z M -1850.1669921875 -37.83332443237305 L -1858.4814453125 -37.83332443237305 C -1859.241088867188 -37.83378601074219 -1859.881225585938 -38.40336608886719 -1859.97021484375 -39.15823364257812 L -1861.02685546875 -48.13646697998047 C -1861.095947265625 -48.7237548828125 -1861.593994140625 -49.1666145324707 -1862.185302734375 -49.1666145324707 L -1862.5 -49.1666145324707 L -1862.5 -49.50040435791016 L -1862.185302734375 -49.50040435791016 C -1861.425659179688 -49.49995422363281 -1860.785522460938 -48.93036651611328 -1860.696533203125 -48.17549514770508 L -1860.6689453125 -47.94147491455078 L -1860.616821289062 -47.50002670288086 L -1860.17236328125 -47.50002670288086 L -1847.598266601562 -47.50002670288086 L -1848.860717773438 -40.50030517578125 L -1859.23095703125 -40.50030517578125 L -1859.793334960938 -40.50030517578125 L -1859.7275390625 -39.94180679321289 L -1859.639892578125 -39.19780349731445 C -1859.571655273438 -38.61054611206055 -1859.073608398438 -38.1671142578125 -1858.4814453125 -38.1671142578125 L -1850.1669921875 -38.1671142578125 L -1850.1669921875 -37.83332443237305 Z"
+                                                stroke="none" />
+                                            <path
+                                                d="M -1851.666748046875 -35.0003662109375 C -1851.483032226562 -35.0003662109375 -1851.33349609375 -35.14982604980469 -1851.33349609375 -35.33354568481445 C -1851.33349609375 -35.51726531982422 -1851.483032226562 -35.6667366027832 -1851.666748046875 -35.6667366027832 C -1851.850463867188 -35.6667366027832 -1852 -35.51726531982422 -1852 -35.33354568481445 C -1852 -35.14982604980469 -1851.850463867188 -35.0003662109375 -1851.666748046875 -35.0003662109375 M -1858.333251953125 -35.0003662109375 C -1858.149536132812 -35.0003662109375 -1858 -35.14982604980469 -1858 -35.33354568481445 C -1858 -35.51726531982422 -1858.149536132812 -35.6667366027832 -1858.333251953125 -35.6667366027832 C -1858.516967773438 -35.6667366027832 -1858.66650390625 -35.51726531982422 -1858.66650390625 -35.33354568481445 C -1858.66650390625 -35.14982604980469 -1858.516967773438 -35.0003662109375 -1858.333251953125 -35.0003662109375 M -1849.278686523438 -41.00030517578125 L -1848.196533203125 -47.00002670288086 L -1860.3896484375 -47.00002670288086 L -1859.68359375 -41.00030517578125 L -1849.278686523438 -41.00030517578125 M -1851.666748046875 -34.0003662109375 C -1852.40283203125 -34.0003662109375 -1853 -34.59735488891602 -1853 -35.33354568481445 C -1853 -36.06973648071289 -1852.40283203125 -36.6667366027832 -1851.666748046875 -36.6667366027832 C -1850.9306640625 -36.6667366027832 -1850.33349609375 -36.06973648071289 -1850.33349609375 -35.33354568481445 C -1850.33349609375 -34.59735488891602 -1850.9306640625 -34.0003662109375 -1851.666748046875 -34.0003662109375 Z M -1858.333251953125 -34.0003662109375 C -1859.070068359375 -34.0003662109375 -1859.66650390625 -34.59735488891602 -1859.66650390625 -35.33354568481445 C -1859.66650390625 -36.06973648071289 -1859.070068359375 -36.6667366027832 -1858.333251953125 -36.6667366027832 C -1857.59716796875 -36.6667366027832 -1857 -36.06973648071289 -1857 -35.33354568481445 C -1857 -34.59735488891602 -1857.59716796875 -34.0003662109375 -1858.333251953125 -34.0003662109375 Z M -1849.6669921875 -37.33332443237305 L -1858.4814453125 -37.33332443237305 C -1859.494873046875 -37.33393478393555 -1860.34814453125 -38.09292602539062 -1860.466796875 -39.09970474243164 L -1861.5234375 -48.07802581787109 C -1861.56298828125 -48.41401672363281 -1861.847412109375 -48.6666145324707 -1862.185302734375 -48.6666145324707 L -1863 -48.6666145324707 L -1863 -50.00040435791016 L -1862.185302734375 -50.00040435791016 C -1861.171875 -49.99980545043945 -1860.318603515625 -49.24080657958984 -1860.199951171875 -48.23401641845703 L -1860.17236328125 -48.00002670288086 L -1847 -48.00002670288086 L -1848.44287109375 -40.00030517578125 L -1859.23095703125 -40.00030517578125 L -1859.143310546875 -39.25630569458008 C -1859.104248046875 -38.92031478881836 -1858.81982421875 -38.6671142578125 -1858.4814453125 -38.6671142578125 L -1849.6669921875 -38.6671142578125 L -1849.6669921875 -37.33332443237305 Z"
+                                                stroke="none" fill="#000" />
+                                        </g>
+                                    </svg>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- mobile navigation area -->
+        <div class="s1201_mobile_menu_wrapper">
+            <div class="s1201_container">
+                <div class="s1201_mobile_menu_content_wrapper">
+                    <ul class="s1201_mobile_menu_list_wrapper">
+                        <li class="s1201_mobile_menu_list">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                                    <g id="Hamburger" transform="translate(-20 -35)" opacity="0.5">
+                                        <g id="Shape_1" data-name="Shape 1" transform="translate(20 35)" fill="none"
+                                            stroke="#000" stroke-linecap="round" stroke-width="1">
+                                            <rect width="16" height="2" rx="1" stroke="none" />
+                                            <rect x="0.5" y="0.5" width="15" height="1" rx="0.5" fill="none"
+                                                opacity="0.5" />
+                                        </g>
+                                        <g id="Shape_2" data-name="Shape 2" transform="translate(20 42)" fill="none"
+                                            stroke="#000" stroke-linecap="round" stroke-width="1">
+                                            <rect width="10" height="2" rx="1" stroke="none" />
+                                            <rect x="0.5" y="0.5" width="9" height="1" rx="0.5" fill="none"
+                                                opacity="0.5" />
+                                        </g>
+                                        <g id="Shape_3" data-name="Shape 3" transform="translate(20 49)" fill="none"
+                                            stroke="#000" stroke-linecap="round" stroke-width="1">
+                                            <rect width="16" height="2" rx="1" stroke="none" />
+                                            <rect x="0.5" y="0.5" width="15" height="1" rx="0.5" fill="none"
+                                                opacity="0.5" />
+                                        </g>
+                                    </g>
+                                </svg>
+                            </span>
+                        </li>
+                        <li class="s1201_mobile_menu_list s1201_active_mobile_icon">
+                            <span class="s1201_mobile_notification_batch">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13.056"
+                                    viewBox="0 0 14 13.056">
+                                    <g id="heart_1_" data-name="heart (1)" transform="translate(0.005 -0.917)"
+                                        opacity="0.3">
+                                        <path
+                                            d="M 6.995073318481445 13.36053276062012 L 6.946862697601318 13.32641792297363 C 6.684792995452881 13.13970756530762 0.4979428350925446 8.689948081970215 0.4979428350925446 5.027807712554932 L 0.4979428350925446 5.018377780914307 L 0.4975828528404236 5.008957862854004 C 0.4261364638805389 3.115414381027222 1.904019594192505 1.507261037826538 3.795009136199951 1.417201042175293 C 4.943465232849121 1.44035005569458 6.001030921936035 2.077732563018799 6.557612895965576 3.083337783813477 L 6.995072841644287 3.873727798461914 L 7.432532787322998 3.083337783813477 C 7.989124774932861 2.077732563018799 9.046700477600098 1.44035005569458 10.19514656066895 1.417201042175293 C 12.08613586425781 1.507261037826538 13.56400966644287 3.115414381027222 13.49256324768066 5.008957862854004 L 13.49220275878906 5.018377780914307 L 13.49220275878906 5.027807712554932 C 13.49220275878906 6.516057968139648 12.42553329467773 8.387527465820312 10.4075231552124 10.43989753723145 C 8.821183204650879 12.05324745178223 7.220442771911621 13.20096778869629 7.043142795562744 13.32651805877686 L 6.995073318481445 13.36053276062012 Z"
+                                            stroke="none" />
+                                        <path
+                                            d="M 3.801840782165527 1.917492866516113 C 2.191958427429199 2.003458023071289 0.9363069534301758 3.375542640686035 0.9972324371337891 4.990097999572754 L 0.9979429244995117 5.02780818939209 C 0.9979429244995117 7.655345916748047 4.78956413269043 11.12081336975098 6.994125366210938 12.7432861328125 C 7.516543865203857 12.35460472106934 8.803104400634766 11.35848808288574 10.05100250244141 10.08934783935547 C 11.97515296936035 8.132427215576172 12.99220275878906 6.382177352905273 12.99220275878906 5.02780818939209 L 12.99291324615479 4.990097999572754 C 13.0538387298584 3.375542640686035 11.79818725585938 2.003458023071289 10.18831443786621 1.917492866516113 C 9.224031448364258 1.942895889282227 8.337762832641602 2.48033332824707 7.870002746582031 3.325468063354492 L 6.995062828063965 4.906237602233887 L 6.120142936706543 3.325457572937012 C 5.652392387390137 2.48033332824707 4.76612377166748 1.942895889282227 3.801840782165527 1.917492866516113 M 3.788063049316406 0.9169979095458984 C 5.124523162841797 0.9377880096435547 6.347812652587891 1.671757698059082 6.995072841644287 2.841207504272461 C 7.642343044281006 1.671757698059082 8.865623474121094 0.9377880096435547 10.20209312438965 0.9169979095458984 C 12.38103294372559 1.01166820526123 14.07444286346436 2.848358154296875 13.99220275878906 5.02780818939209 C 13.99220275878906 8.978277206420898 7.603822708129883 13.54214763641357 7.33210277557373 13.73456764221191 L 6.995072841644287 13.97305774688721 L 6.658042907714844 13.73456764221191 C 6.386322975158691 13.54098796844482 -0.002057075500488281 8.978277206420898 -0.002057075500488281 5.02780818939209 C -0.08429718017578125 2.848358154296875 1.609112739562988 1.01166820526123 3.788063049316406 0.9169979095458984 Z"
+                                            stroke="none" fill="#000" />
+                                    </g>
+                                </svg>
+                            </span>
+                        </li>
+                        <li class="s1201_mobile_menu_list s1201_active_mobile_icon">
+                            <span class="s1201_mobile_notification_batch">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
+                                    <g id="Union_1" data-name="Union 1" transform="translate(1863 50)"
+                                        stroke-linecap="square" opacity="0.3">
+                                        <path
+                                            d="M -1853.083374023438 -36.75037002563477 C -1853.313110351562 -36.75037002563477 -1853.5 -36.93722915649414 -1853.5 -37.16690826416016 C -1853.5 -37.39658737182617 -1853.313110351562 -37.58343887329102 -1853.083374023438 -37.58343887329102 C -1852.853637695312 -37.58343887329102 -1852.666748046875 -37.39658737182617 -1852.666748046875 -37.16690826416016 C -1852.666748046875 -36.93722915649414 -1852.853637695312 -36.75037002563477 -1853.083374023438 -36.75037002563477 Z M -1858.916625976562 -36.75037002563477 C -1859.146362304688 -36.75037002563477 -1859.333251953125 -36.93722915649414 -1859.333251953125 -37.16690826416016 C -1859.333251953125 -37.39658737182617 -1859.146362304688 -37.58343887329102 -1858.916625976562 -37.58343887329102 C -1858.686889648438 -37.58343887329102 -1858.5 -37.39658737182617 -1858.5 -37.16690826416016 C -1858.5 -36.93722915649414 -1858.686889648438 -36.75037002563477 -1858.916625976562 -36.75037002563477 Z M -1850.889282226562 -42.00030899047852 L -1859.7021484375 -42.00030899047852 L -1860.209228515625 -42.00030899047852 L -1860.856567382812 -47.50006866455078 L -1860.52587890625 -47.50006866455078 L -1849.897338867188 -47.50006866455078 L -1850.889282226562 -42.00030899047852 Z"
+                                            stroke="none" />
+                                        <path
+                                            d="M -1851.51611328125 -42.75030899047852 L -1850.794677734375 -46.75006866455078 L -1860.013061523438 -46.75006866455078 L -1859.542358398438 -42.75030899047852 L -1851.51611328125 -42.75030899047852 M -1853.083374023438 -36.00037002563477 C -1853.7275390625 -36.00037002563477 -1854.25 -36.52273941040039 -1854.25 -37.16690826416016 C -1854.25 -37.81106948852539 -1853.7275390625 -38.33343887329102 -1853.083374023438 -38.33343887329102 C -1852.439331054688 -38.33343887329102 -1851.916748046875 -37.81106948852539 -1851.916748046875 -37.16690826416016 C -1851.916748046875 -36.52273941040039 -1852.439331054688 -36.00037002563477 -1853.083374023438 -36.00037002563477 Z M -1858.916625976562 -36.00037002563477 C -1859.561279296875 -36.00037002563477 -1860.083251953125 -36.52273941040039 -1860.083251953125 -37.16690826416016 C -1860.083251953125 -37.81106948852539 -1859.561279296875 -38.33343887329102 -1858.916625976562 -38.33343887329102 C -1858.2724609375 -38.33343887329102 -1857.75 -37.81106948852539 -1857.75 -37.16690826416016 C -1857.75 -36.52273941040039 -1858.2724609375 -36.00037002563477 -1858.916625976562 -36.00037002563477 Z M -1851.333618164062 -38.91670989990234 L -1859.046264648438 -38.91670989990234 C -1859.932983398438 -38.91724014282227 -1860.6796875 -39.58135986328125 -1860.783447265625 -40.46229934692383 L -1861.7080078125 -48.31831741333008 C -1861.74267578125 -48.61231994628906 -1861.991455078125 -48.83333969116211 -1862.287109375 -48.83333969116211 L -1863 -48.83333969116211 L -1863 -50.00040054321289 L -1862.287109375 -50.00040054321289 C -1861.400390625 -49.99987030029297 -1860.65380859375 -49.33575057983398 -1860.549926757812 -48.45481872558594 L -1860.52587890625 -48.25006866455078 L -1849 -48.25006866455078 L -1850.262451171875 -41.25030899047852 L -1859.7021484375 -41.25030899047852 L -1859.625366210938 -40.59931945800781 C -1859.591186523438 -40.30532073974609 -1859.34228515625 -40.08377838134766 -1859.046264648438 -40.08377838134766 L -1851.333618164062 -40.08377838134766 L -1851.333618164062 -38.91670989990234 Z"
+                                            stroke="none" fill="#000" />
+                                    </g>
+                                </svg>
+                            </span>
+                        </li>
+                        <li class="s1201_mobile_menu_list">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10.5" height="14" viewBox="0 0 10.5 14">
+                                    <g id="User" transform="translate(406 40.984)" opacity="0.3">
+                                        <path
+                                            d="M -396.2504272460938 -27.73419189453125 L -405.25 -27.73419189453125 L -405.25 -29.92578125 C -405.2484130859375 -31.10511207580566 -404.2873840332031 -32.06628036499023 -403.1076965332031 -32.0673828125 L -398.3920288085938 -32.0673828125 C -397.2127380371094 -32.06628036499023 -396.2516784667969 -31.10520172119141 -396.2504272460938 -29.92498207092285 L -396.2504272460938 -27.73419189453125 Z M -400.75 -34.73398208618164 C -402.2666015625 -34.73398208618164 -403.5004272460938 -35.96767044067383 -403.5004272460938 -37.48408126831055 C -403.5004272460938 -39.00050354003906 -402.2666015625 -40.23419189453125 -400.75 -40.23419189453125 C -399.233642578125 -40.23419189453125 -398 -39.00050354003906 -398 -37.48408126831055 C -398 -35.96767044067383 -399.233642578125 -34.73398208618164 -400.75 -34.73398208618164 Z"
+                                            stroke="none" />
+                                        <path
+                                            d="M -397.0004272460938 -28.48419189453125 L -397.0004272460938 -29.92417144775391 C -397.0012512207031 -30.69167137145996 -397.6261291503906 -31.3166618347168 -398.3920288085938 -31.3173828125 L -403.1069946289062 -31.3173828125 C -403.8740844726562 -31.3166618347168 -404.4989624023438 -30.69149208068848 -404.5 -29.92578125 L -404.5 -28.48419189453125 L -397.0004272460938 -28.48419189453125 M -400.75 -35.48398208618164 C -399.647216796875 -35.48398208618164 -398.75 -36.38122177124023 -398.75 -37.48408126831055 C -398.75 -38.58694076538086 -399.647216796875 -39.48419189453125 -400.75 -39.48419189453125 C -401.8530578613281 -39.48419189453125 -402.7504272460938 -38.58694076538086 -402.7504272460938 -37.48408126831055 C -402.7504272460938 -36.38122177124023 -401.8530578613281 -35.48398208618164 -400.75 -35.48398208618164 M -395.5004272460938 -26.98419189453125 L -406 -26.98419189453125 L -406 -29.92578125 C -405.9978637695312 -31.52229118347168 -404.7050170898438 -32.81589126586914 -403.1083984375 -32.8173828125 L -398.3920288085938 -32.8173828125 C -396.7958374023438 -32.81589126586914 -395.5021362304688 -31.52229118347168 -395.5004272460938 -29.92578125 L -395.5004272460938 -26.98419189453125 Z M -400.75 -33.98398208618164 C -402.6832885742188 -33.98398208618164 -404.2504272460938 -35.55111312866211 -404.2504272460938 -37.48408126831055 C -404.2504272460938 -39.41716003417969 -402.6832885742188 -40.98419189453125 -400.75 -40.98419189453125 C -398.817138671875 -40.98419189453125 -397.25 -39.41716003417969 -397.25 -37.48408126831055 C -397.25 -35.55111312866211 -398.817138671875 -33.98398208618164 -400.75 -33.98398208618164 Z"
+                                            stroke="none" fill="#000" />
+                                    </g>
+                                </svg>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- sidebar area -->
+        <div class="s1201_container">
+            <div class="s1201_mobile_sidebar_main_wrapper s1201_open_sidebar">
+                <div class="s1201_mobile_sidebar_menu_content_wrapper">
+                    <div class="s1201_sidebar_menulist_wrapper">
+                        <ul class="s1201_sidebar_menu_list_item_wrapper">
+                            <li class="s1201_sidebar_menu_list_item s1201_active_menu">
+                                <div class="s1201_all_catagories_title_wrapper">
+                                    <span class="s1201_hamburger_icon"><svg xmlns="http://www.w3.org/2000/svg"
+                                            width="16" height="16" viewBox="0 0 16 16">
+                                            <g id="ICON" transform="translate(-20 -35)">
+                                                <g id="Shape_1" data-name="Shape 1" transform="translate(20 35)"
+                                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1">
+                                                    <rect width="16" height="2" rx="1" stroke="none" />
+                                                    <rect x="0.5" y="0.5" width="15" height="1" rx="0.5" fill="none" />
+                                                </g>
+                                                <g id="Shape_2" data-name="Shape 2" transform="translate(20 42)"
+                                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1">
+                                                    <rect width="10" height="2" rx="1" stroke="none" />
+                                                    <rect x="0.5" y="0.5" width="9" height="1" rx="0.5" fill="none" />
+                                                </g>
+                                                <g id="Shape_3" data-name="Shape 3" transform="translate(20 49)"
+                                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1">
+                                                    <rect width="16" height="2" rx="1" stroke="none" />
+                                                    <rect x="0.5" y="0.5" width="15" height="1" rx="0.5" fill="none" />
+                                                </g>
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <div class="s1201_all_catagories_title_content_wrapper">
+                                        <p> <span class="s1201_remove_all_title"> All </span>Catagories</p>
+                                        <span class="s1201_menu_icon s01201_catagories_arrow"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="11" height="5.98"
+                                                viewBox="0 0 11 5.98">
+                                                <path id="Path_1730" data-name="Path 1730"
+                                                    d="M5.5,5.981A1.634,1.634,0,0,1,4.34,5.5L0,1.16,1.16,0,5.5,4.34,9.84,0,11,1.16,6.66,5.5a1.634,1.634,0,0,1-1.16.481Z" />
+                                            </svg>
+                                    </div>
+                                    </span>
+                                </div>
+                                <!-- sub menu items area -->
+                                <ul class="s1201_sub_menu_items_main_wrapper">
+                                    <li class="s1201_sub_menu_item s1201_active_menu">
+
+                                        <div class="s1201_sub_menu_item_wrapper">
+                                            <span class="s1201_current_active_menu">Women's Fashion</span>
+                                            <span class="s1201_menu_icon"><svg xmlns="http://www.w3.org/2000/svg"
+                                                    width="8" height="4.349" viewBox="0 0 8 4.349">
+                                                    <path id="Path_1732" data-name="Path 1732"
+                                                        d="M4,4.349A1.189,1.189,0,0,1,3.157,4L0,.843.843,0,4,3.157,7.157,0,8,.843,4.843,4A1.189,1.189,0,0,1,4,4.349Z"
+                                                        fill="#1e272e" opacity="0.5" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <!-- sub sub catagories style -->
+                                        <ul class="s1201_sub_sub_menu_items_main_wrapper">
+                                            <li class="s1201_sub_sub_menu_item">
+                                                <div class="s1201_sub_sub_menu_item_wrapper">
+                                                    <span>Sweaters</span>
+                                                    <span class="s1201_menu_icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="4.349"
+                                                            viewBox="0 0 8 4.349">
+                                                            <path id="Path_1732" data-name="Path 1732"
+                                                                d="M4,4.349A1.189,1.189,0,0,1,3.157,4L0,.843.843,0,4,3.157,7.157,0,8,.843,4.843,4A1.189,1.189,0,0,1,4,4.349Z"
+                                                                fill="#1e272e" opacity="0.5" />
+                                                        </svg>
+                                                    </span>
+
+                                                </div>
+                                            </li>
+                                            <li class="s1201_sub_sub_menu_item">
+                                                <div class="s1201_sub_sub_menu_item_wrapper">
+                                                    <span>T-shirt</span>
+                                                    <span class="s1201_menu_icon"><svg
+                                                            xmlns="http://www.w3.org/2000/svg" width="8" height="4.349"
+                                                            viewBox="0 0 8 4.349">
+                                                            <path id="Path_1732" data-name="Path 1732"
+                                                                d="M4,4.349A1.189,1.189,0,0,1,3.157,4L0,.843.843,0,4,3.157,7.157,0,8,.843,4.843,4A1.189,1.189,0,0,1,4,4.349Z"
+                                                                fill="#1e272e" opacity="0.5" />
+                                                        </svg></span>
+
+                                                </div>
+                                                <span class="s1201_li_border"></span>
+                                            </li>
+                                            <li class="s1201_sub_sub_menu_item">
+                                                <div class="s1201_sub_sub_menu_item_wrapper">
+                                                    <span>Shirt</span>
+                                                    <span class="s1201_menu_icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="4.349"
+                                                            viewBox="0 0 8 4.349">
+                                                            <path id="Path_1732" data-name="Path 1732"
+                                                                d="M4,4.349A1.189,1.189,0,0,1,3.157,4L0,.843.843,0,4,3.157,7.157,0,8,.843,4.843,4A1.189,1.189,0,0,1,4,4.349Z"
+                                                                fill="#1e272e" opacity="0.5" />
+                                                        </svg>
+                                                    </span>
+
+                                                </div>
+                                            </li>
+                                            <li class="s1201_sub_sub_menu_item s1201_active_menu">
+                                                <div class="s1201_sub_sub_menu_item_wrapper">
+                                                    <span class="s1201_current_active_menu">jackets & Coate</span>
+                                                    <span class="s1201_menu_icon"><svg
+                                                            xmlns="http://www.w3.org/2000/svg" width="8" height="4.349"
+                                                            viewBox="0 0 8 4.349">
+                                                            <path id="Path_1732" data-name="Path 1732"
+                                                                d="M4,4.349A1.189,1.189,0,0,1,3.157,4L0,.843.843,0,4,3.157,7.157,0,8,.843,4.843,4A1.189,1.189,0,0,1,4,4.349Z"
+                                                                fill="#1e272e" opacity="0.5" />
+                                                        </svg>
+                                                    </span>
+                                                </div>
+
+                                                <!-- sub sub sub catagories area -->
+
+                                                <ul class="s1201_sub_sub_sub_menu_items_main_wrapper">
+                                                    <li class="s1201_sub_sub_sub_menu_item">
+                                                        <div class="s1201_sub_sub_sub_menu_item_wrapper">
+                                                            <span>Bomber Jacket</span>
+
+                                                        </div>
+                                                    </li>
+                                                    <li class="s1201_sub_sub_sub_menu_item">
+                                                        <div class="s1201_sub_sub_sub_menu_item_wrapper">
+                                                            <span>Denims</span>
+
+                                                        </div>
+                                                    </li>
+                                                    <li class="s1201_sub_sub_sub_menu_item">
+                                                        <div class="s1201_sub_sub_sub_menu_item_wrapper">
+                                                            <span>Leathers</span>
+
+                                                        </div>
+                                                    </li>
+                                                    <li class="s1201_sub_sub_sub_menu_item">
+                                                        <div class="s1201_sub_sub_sub_menu_item_wrapper">
+                                                            <span>Casual Jacket</span>
+
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="s1201_sub_sub_menu_item">
+                                                <div class="s1201_sub_sub_menu_item_wrapper">
+                                                    <span>Jeans</span>
+                                                    <span class="s1201_menu_icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="4.349"
+                                                            viewBox="0 0 8 4.349">
+                                                            <path id="Path_1732" data-name="Path 1732"
+                                                                d="M4,4.349A1.189,1.189,0,0,1,3.157,4L0,.843.843,0,4,3.157,7.157,0,8,.843,4.843,4A1.189,1.189,0,0,1,4,4.349Z"
+                                                                fill="#1e272e" opacity="0.5" />
+                                                        </svg>
+                                                    </span>
+
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                    </li>
+                                    <li class="s1201_sub_menu_item">
+                                        <div class="s1201_sub_menu_item_wrapper">
+                                            <span>Kids Fashion</span>
+                                            <span class="s1201_menu_icon"><svg xmlns="http://www.w3.org/2000/svg"
+                                                    width="8" height="4.349" viewBox="0 0 8 4.349">
+                                                    <path id="Path_1732" data-name="Path 1732"
+                                                        d="M4,4.349A1.189,1.189,0,0,1,3.157,4L0,.843.843,0,4,3.157,7.157,0,8,.843,4.843,4A1.189,1.189,0,0,1,4,4.349Z"
+                                                        fill="#1e272e" opacity="0.5" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </li>
+                                    <li class="s1201_sub_menu_item">
+                                        <div class="s1201_sub_menu_item_wrapper">
+                                            <span>Health & Glosary</span>
+                                            <span class="s1201_menu_icon"><svg xmlns="http://www.w3.org/2000/svg"
+                                                    width="8" height="4.349" viewBox="0 0 8 4.349">
+                                                    <path id="Path_1732" data-name="Path 1732"
+                                                        d="M4,4.349A1.189,1.189,0,0,1,3.157,4L0,.843.843,0,4,3.157,7.157,0,8,.843,4.843,4A1.189,1.189,0,0,1,4,4.349Z"
+                                                        fill="#1e272e" opacity="0.5" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </li>
+                                    <li class="s1201_sub_menu_item">
+                                        <div class="s1201_sub_menu_item_wrapper">
+                                            <span>Men's Fashion</span>
+                                            <span class="s1201_menu_icon"><svg xmlns="http://www.w3.org/2000/svg"
+                                                    width="8" height="4.349" viewBox="0 0 8 4.349">
+                                                    <path id="Path_1732" data-name="Path 1732"
+                                                        d="M4,4.349A1.189,1.189,0,0,1,3.157,4L0,.843.843,0,4,3.157,7.157,0,8,.843,4.843,4A1.189,1.189,0,0,1,4,4.349Z"
+                                                        fill="#1e272e" opacity="0.5" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </li>
+                                    <li class="s1201_sub_menu_item">
+                                        <div class="s1201_sub_menu_item_wrapper">
+                                            <span>Hand made Product</span>
+                                            <span class="s1201_menu_icon"><svg xmlns="http://www.w3.org/2000/svg"
+                                                    width="8" height="4.349" viewBox="0 0 8 4.349">
+                                                    <path id="Path_1732" data-name="Path 1732"
+                                                        d="M4,4.349A1.189,1.189,0,0,1,3.157,4L0,.843.843,0,4,3.157,7.157,0,8,.843,4.843,4A1.189,1.189,0,0,1,4,4.349Z"
+                                                        fill="#1e272e" opacity="0.5" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </li>
+                                    <li class="s1201_sub_menu_item">
+                                        <div class="s1201_sub_menu_item_wrapper">
+                                            <span>Home and Lifestyle</span>
+                                            <span class="s1201_menu_icon"><svg xmlns="http://www.w3.org/2000/svg"
+                                                    width="8" height="4.349" viewBox="0 0 8 4.349">
+                                                    <path id="Path_1732" data-name="Path 1732"
+                                                        d="M4,4.349A1.189,1.189,0,0,1,3.157,4L0,.843.843,0,4,3.157,7.157,0,8,.843,4.843,4A1.189,1.189,0,0,1,4,4.349Z"
+                                                        fill="#1e272e" opacity="0.5" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <div class="s1201_sidebar_info_section">
+                                <li class="s1201_sidebar_menu_list_item">Contact Us</li>
+                                <li class="s1201_sidebar_menu_list_item">About Us</li>
+                                <li class="s1201_sidebar_menu_list_item">Privecy Ploicy</li>
+                                <li class="s1201_sidebar_menu_list_item">FAQ</li>
+                                <li class="s1201_sidebar_menu_list_item">Term & Condition</li>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <!-- saidebar footer area -->
+                    <div class="s1201_mobile_sidebar_footer_wrapper">
+                        <div class="s1201_get_in_touch_text_wrapper">
+                            <span class="s1201_get_in_touch_text">Get In Touch</span>
+                        </div>
+                        <ul class="s1201_sidebar_footer_item_wrapper">
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="15.824" height="15.824"
+                                    viewBox="0 0 15.824 15.824">
+                                    <path id="Path_1688" data-name="Path 1688"
+                                        d="M-.016-9.712a3.987,3.987,0,0,0-2.048.552,4.169,4.169,0,0,0-1.5,1.5,3.958,3.958,0,0,0-.56,2.056,4,4,0,0,0,.552,2.056,4.088,4.088,0,0,0,1.5,1.5A4.044,4.044,0,0,0-.008-1.5a4,4,0,0,0,2.056-.552,4.106,4.106,0,0,0,1.5-1.5A4,4,0,0,0,4.1-5.608a4,4,0,0,0-.552-2.056,4.106,4.106,0,0,0-1.5-1.5A4.016,4.016,0,0,0-.016-9.712Zm0,6.64a2.462,2.462,0,0,1-1.272-.344,2.58,2.58,0,0,1-.928-.928A2.462,2.462,0,0,1-2.56-5.616,2.42,2.42,0,0,1-2.216-6.88a2.6,2.6,0,0,1,.928-.92A2.462,2.462,0,0,1-.016-8.144,2.462,2.462,0,0,1,1.256-7.8a2.6,2.6,0,0,1,.928.92,2.42,2.42,0,0,1,.344,1.264,2.462,2.462,0,0,1-.344,1.272,2.58,2.58,0,0,1-.928.928A2.462,2.462,0,0,1-.016-3.072ZM3.344-13.52h-6.72a4.419,4.419,0,0,0-2.288.624A4.5,4.5,0,0,0-7.312-11.24,4.464,4.464,0,0,0-7.92-8.96v6.7A4.464,4.464,0,0,0-7.312.024,4.5,4.5,0,0,0-5.664,1.68,4.419,4.419,0,0,0-3.376,2.3h6.72a4.5,4.5,0,0,0,2.3-.624A4.6,4.6,0,0,0,7.28.048a4.5,4.5,0,0,0,.624-2.3v-6.7a4.5,4.5,0,0,0-.624-2.3A4.6,4.6,0,0,0,5.648-12.9,4.5,4.5,0,0,0,3.344-13.52ZM6.336-2.256a2.939,2.939,0,0,1-.4,1.5A2.957,2.957,0,0,1,4.848.336a2.939,2.939,0,0,1-1.5.4h-6.72a2.9,2.9,0,0,1-1.5-.4A2.976,2.976,0,0,1-5.952-.752a2.939,2.939,0,0,1-.4-1.5v-6.7a2.939,2.939,0,0,1,.4-1.5,2.976,2.976,0,0,1,1.08-1.088,2.9,2.9,0,0,1,1.5-.4h6.72a2.939,2.939,0,0,1,1.5.4,2.957,2.957,0,0,1,1.088,1.088,2.939,2.939,0,0,1,.4,1.5ZM4.16-10.912a1.047,1.047,0,0,0-.768.32,1.047,1.047,0,0,0-.32.768,1.021,1.021,0,0,0,.32.76,1.061,1.061,0,0,0,.768.312,1.034,1.034,0,0,0,.76-.312,1.034,1.034,0,0,0,.312-.76,1.061,1.061,0,0,0-.312-.768A1.021,1.021,0,0,0,4.16-10.912Z"
+                                        transform="translate(7.92 13.52)" fill="#ffc312" />
+                                </svg>
+                            </li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="15.824" height="15.824"
+                                    viewBox="0 0 15.824 15.824">
+                                    <path id="Path_1688" data-name="Path 1688"
+                                        d="M-.016-9.712a3.987,3.987,0,0,0-2.048.552,4.169,4.169,0,0,0-1.5,1.5,3.958,3.958,0,0,0-.56,2.056,4,4,0,0,0,.552,2.056,4.088,4.088,0,0,0,1.5,1.5A4.044,4.044,0,0,0-.008-1.5a4,4,0,0,0,2.056-.552,4.106,4.106,0,0,0,1.5-1.5A4,4,0,0,0,4.1-5.608a4,4,0,0,0-.552-2.056,4.106,4.106,0,0,0-1.5-1.5A4.016,4.016,0,0,0-.016-9.712Zm0,6.64a2.462,2.462,0,0,1-1.272-.344,2.58,2.58,0,0,1-.928-.928A2.462,2.462,0,0,1-2.56-5.616,2.42,2.42,0,0,1-2.216-6.88a2.6,2.6,0,0,1,.928-.92A2.462,2.462,0,0,1-.016-8.144,2.462,2.462,0,0,1,1.256-7.8a2.6,2.6,0,0,1,.928.92,2.42,2.42,0,0,1,.344,1.264,2.462,2.462,0,0,1-.344,1.272,2.58,2.58,0,0,1-.928.928A2.462,2.462,0,0,1-.016-3.072ZM3.344-13.52h-6.72a4.419,4.419,0,0,0-2.288.624A4.5,4.5,0,0,0-7.312-11.24,4.464,4.464,0,0,0-7.92-8.96v6.7A4.464,4.464,0,0,0-7.312.024,4.5,4.5,0,0,0-5.664,1.68,4.419,4.419,0,0,0-3.376,2.3h6.72a4.5,4.5,0,0,0,2.3-.624A4.6,4.6,0,0,0,7.28.048a4.5,4.5,0,0,0,.624-2.3v-6.7a4.5,4.5,0,0,0-.624-2.3A4.6,4.6,0,0,0,5.648-12.9,4.5,4.5,0,0,0,3.344-13.52ZM6.336-2.256a2.939,2.939,0,0,1-.4,1.5A2.957,2.957,0,0,1,4.848.336a2.939,2.939,0,0,1-1.5.4h-6.72a2.9,2.9,0,0,1-1.5-.4A2.976,2.976,0,0,1-5.952-.752a2.939,2.939,0,0,1-.4-1.5v-6.7a2.939,2.939,0,0,1,.4-1.5,2.976,2.976,0,0,1,1.08-1.088,2.9,2.9,0,0,1,1.5-.4h6.72a2.939,2.939,0,0,1,1.5.4,2.957,2.957,0,0,1,1.088,1.088,2.939,2.939,0,0,1,.4,1.5ZM4.16-10.912a1.047,1.047,0,0,0-.768.32,1.047,1.047,0,0,0-.32.768,1.021,1.021,0,0,0,.32.76,1.061,1.061,0,0,0,.768.312,1.034,1.034,0,0,0,.76-.312,1.034,1.034,0,0,0,.312-.76,1.061,1.061,0,0,0-.312-.768A1.021,1.021,0,0,0,4.16-10.912Z"
+                                        transform="translate(7.92 13.52)" fill="#ffc312" />
+                                </svg>
+                            </li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="15.824" height="15.824"
+                                    viewBox="0 0 15.824 15.824">
+                                    <path id="Path_1688" data-name="Path 1688"
+                                        d="M-.016-9.712a3.987,3.987,0,0,0-2.048.552,4.169,4.169,0,0,0-1.5,1.5,3.958,3.958,0,0,0-.56,2.056,4,4,0,0,0,.552,2.056,4.088,4.088,0,0,0,1.5,1.5A4.044,4.044,0,0,0-.008-1.5a4,4,0,0,0,2.056-.552,4.106,4.106,0,0,0,1.5-1.5A4,4,0,0,0,4.1-5.608a4,4,0,0,0-.552-2.056,4.106,4.106,0,0,0-1.5-1.5A4.016,4.016,0,0,0-.016-9.712Zm0,6.64a2.462,2.462,0,0,1-1.272-.344,2.58,2.58,0,0,1-.928-.928A2.462,2.462,0,0,1-2.56-5.616,2.42,2.42,0,0,1-2.216-6.88a2.6,2.6,0,0,1,.928-.92A2.462,2.462,0,0,1-.016-8.144,2.462,2.462,0,0,1,1.256-7.8a2.6,2.6,0,0,1,.928.92,2.42,2.42,0,0,1,.344,1.264,2.462,2.462,0,0,1-.344,1.272,2.58,2.58,0,0,1-.928.928A2.462,2.462,0,0,1-.016-3.072ZM3.344-13.52h-6.72a4.419,4.419,0,0,0-2.288.624A4.5,4.5,0,0,0-7.312-11.24,4.464,4.464,0,0,0-7.92-8.96v6.7A4.464,4.464,0,0,0-7.312.024,4.5,4.5,0,0,0-5.664,1.68,4.419,4.419,0,0,0-3.376,2.3h6.72a4.5,4.5,0,0,0,2.3-.624A4.6,4.6,0,0,0,7.28.048a4.5,4.5,0,0,0,.624-2.3v-6.7a4.5,4.5,0,0,0-.624-2.3A4.6,4.6,0,0,0,5.648-12.9,4.5,4.5,0,0,0,3.344-13.52ZM6.336-2.256a2.939,2.939,0,0,1-.4,1.5A2.957,2.957,0,0,1,4.848.336a2.939,2.939,0,0,1-1.5.4h-6.72a2.9,2.9,0,0,1-1.5-.4A2.976,2.976,0,0,1-5.952-.752a2.939,2.939,0,0,1-.4-1.5v-6.7a2.939,2.939,0,0,1,.4-1.5,2.976,2.976,0,0,1,1.08-1.088,2.9,2.9,0,0,1,1.5-.4h6.72a2.939,2.939,0,0,1,1.5.4,2.957,2.957,0,0,1,1.088,1.088,2.939,2.939,0,0,1,.4,1.5ZM4.16-10.912a1.047,1.047,0,0,0-.768.32,1.047,1.047,0,0,0-.32.768,1.021,1.021,0,0,0,.32.76,1.061,1.061,0,0,0,.768.312,1.034,1.034,0,0,0,.76-.312,1.034,1.034,0,0,0,.312-.76,1.061,1.061,0,0,0-.312-.768A1.021,1.021,0,0,0,4.16-10.912Z"
+                                        transform="translate(7.92 13.52)" fill="#ffc312" />
+                                </svg>
+                            </li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="15.824" height="15.824"
+                                    viewBox="0 0 15.824 15.824">
+                                    <path id="Path_1688" data-name="Path 1688"
+                                        d="M-.016-9.712a3.987,3.987,0,0,0-2.048.552,4.169,4.169,0,0,0-1.5,1.5,3.958,3.958,0,0,0-.56,2.056,4,4,0,0,0,.552,2.056,4.088,4.088,0,0,0,1.5,1.5A4.044,4.044,0,0,0-.008-1.5a4,4,0,0,0,2.056-.552,4.106,4.106,0,0,0,1.5-1.5A4,4,0,0,0,4.1-5.608a4,4,0,0,0-.552-2.056,4.106,4.106,0,0,0-1.5-1.5A4.016,4.016,0,0,0-.016-9.712Zm0,6.64a2.462,2.462,0,0,1-1.272-.344,2.58,2.58,0,0,1-.928-.928A2.462,2.462,0,0,1-2.56-5.616,2.42,2.42,0,0,1-2.216-6.88a2.6,2.6,0,0,1,.928-.92A2.462,2.462,0,0,1-.016-8.144,2.462,2.462,0,0,1,1.256-7.8a2.6,2.6,0,0,1,.928.92,2.42,2.42,0,0,1,.344,1.264,2.462,2.462,0,0,1-.344,1.272,2.58,2.58,0,0,1-.928.928A2.462,2.462,0,0,1-.016-3.072ZM3.344-13.52h-6.72a4.419,4.419,0,0,0-2.288.624A4.5,4.5,0,0,0-7.312-11.24,4.464,4.464,0,0,0-7.92-8.96v6.7A4.464,4.464,0,0,0-7.312.024,4.5,4.5,0,0,0-5.664,1.68,4.419,4.419,0,0,0-3.376,2.3h6.72a4.5,4.5,0,0,0,2.3-.624A4.6,4.6,0,0,0,7.28.048a4.5,4.5,0,0,0,.624-2.3v-6.7a4.5,4.5,0,0,0-.624-2.3A4.6,4.6,0,0,0,5.648-12.9,4.5,4.5,0,0,0,3.344-13.52ZM6.336-2.256a2.939,2.939,0,0,1-.4,1.5A2.957,2.957,0,0,1,4.848.336a2.939,2.939,0,0,1-1.5.4h-6.72a2.9,2.9,0,0,1-1.5-.4A2.976,2.976,0,0,1-5.952-.752a2.939,2.939,0,0,1-.4-1.5v-6.7a2.939,2.939,0,0,1,.4-1.5,2.976,2.976,0,0,1,1.08-1.088,2.9,2.9,0,0,1,1.5-.4h6.72a2.939,2.939,0,0,1,1.5.4,2.957,2.957,0,0,1,1.088,1.088,2.939,2.939,0,0,1,.4,1.5ZM4.16-10.912a1.047,1.047,0,0,0-.768.32,1.047,1.047,0,0,0-.32.768,1.021,1.021,0,0,0,.32.76,1.061,1.061,0,0,0,.768.312,1.034,1.034,0,0,0,.76-.312,1.034,1.034,0,0,0,.312-.76,1.061,1.061,0,0,0-.312-.768A1.021,1.021,0,0,0,4.16-10.912Z"
+                                        transform="translate(7.92 13.52)" fill="#ffc312" />
+                                </svg>
+                            </li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="15.824" height="15.824"
+                                    viewBox="0 0 15.824 15.824">
+                                    <path id="Path_1688" data-name="Path 1688"
+                                        d="M-.016-9.712a3.987,3.987,0,0,0-2.048.552,4.169,4.169,0,0,0-1.5,1.5,3.958,3.958,0,0,0-.56,2.056,4,4,0,0,0,.552,2.056,4.088,4.088,0,0,0,1.5,1.5A4.044,4.044,0,0,0-.008-1.5a4,4,0,0,0,2.056-.552,4.106,4.106,0,0,0,1.5-1.5A4,4,0,0,0,4.1-5.608a4,4,0,0,0-.552-2.056,4.106,4.106,0,0,0-1.5-1.5A4.016,4.016,0,0,0-.016-9.712Zm0,6.64a2.462,2.462,0,0,1-1.272-.344,2.58,2.58,0,0,1-.928-.928A2.462,2.462,0,0,1-2.56-5.616,2.42,2.42,0,0,1-2.216-6.88a2.6,2.6,0,0,1,.928-.92A2.462,2.462,0,0,1-.016-8.144,2.462,2.462,0,0,1,1.256-7.8a2.6,2.6,0,0,1,.928.92,2.42,2.42,0,0,1,.344,1.264,2.462,2.462,0,0,1-.344,1.272,2.58,2.58,0,0,1-.928.928A2.462,2.462,0,0,1-.016-3.072ZM3.344-13.52h-6.72a4.419,4.419,0,0,0-2.288.624A4.5,4.5,0,0,0-7.312-11.24,4.464,4.464,0,0,0-7.92-8.96v6.7A4.464,4.464,0,0,0-7.312.024,4.5,4.5,0,0,0-5.664,1.68,4.419,4.419,0,0,0-3.376,2.3h6.72a4.5,4.5,0,0,0,2.3-.624A4.6,4.6,0,0,0,7.28.048a4.5,4.5,0,0,0,.624-2.3v-6.7a4.5,4.5,0,0,0-.624-2.3A4.6,4.6,0,0,0,5.648-12.9,4.5,4.5,0,0,0,3.344-13.52ZM6.336-2.256a2.939,2.939,0,0,1-.4,1.5A2.957,2.957,0,0,1,4.848.336a2.939,2.939,0,0,1-1.5.4h-6.72a2.9,2.9,0,0,1-1.5-.4A2.976,2.976,0,0,1-5.952-.752a2.939,2.939,0,0,1-.4-1.5v-6.7a2.939,2.939,0,0,1,.4-1.5,2.976,2.976,0,0,1,1.08-1.088,2.9,2.9,0,0,1,1.5-.4h6.72a2.939,2.939,0,0,1,1.5.4,2.957,2.957,0,0,1,1.088,1.088,2.939,2.939,0,0,1,.4,1.5ZM4.16-10.912a1.047,1.047,0,0,0-.768.32,1.047,1.047,0,0,0-.32.768,1.021,1.021,0,0,0,.32.76,1.061,1.061,0,0,0,.768.312,1.034,1.034,0,0,0,.76-.312,1.034,1.034,0,0,0,.312-.76,1.061,1.061,0,0,0-.312-.768A1.021,1.021,0,0,0,4.16-10.912Z"
+                                        transform="translate(7.92 13.52)" fill="#ffc312" />
+                                </svg>
+                            </li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="15.824" height="15.824"
+                                    viewBox="0 0 15.824 15.824">
+                                    <path id="Path_1688" data-name="Path 1688"
+                                        d="M-.016-9.712a3.987,3.987,0,0,0-2.048.552,4.169,4.169,0,0,0-1.5,1.5,3.958,3.958,0,0,0-.56,2.056,4,4,0,0,0,.552,2.056,4.088,4.088,0,0,0,1.5,1.5A4.044,4.044,0,0,0-.008-1.5a4,4,0,0,0,2.056-.552,4.106,4.106,0,0,0,1.5-1.5A4,4,0,0,0,4.1-5.608a4,4,0,0,0-.552-2.056,4.106,4.106,0,0,0-1.5-1.5A4.016,4.016,0,0,0-.016-9.712Zm0,6.64a2.462,2.462,0,0,1-1.272-.344,2.58,2.58,0,0,1-.928-.928A2.462,2.462,0,0,1-2.56-5.616,2.42,2.42,0,0,1-2.216-6.88a2.6,2.6,0,0,1,.928-.92A2.462,2.462,0,0,1-.016-8.144,2.462,2.462,0,0,1,1.256-7.8a2.6,2.6,0,0,1,.928.92,2.42,2.42,0,0,1,.344,1.264,2.462,2.462,0,0,1-.344,1.272,2.58,2.58,0,0,1-.928.928A2.462,2.462,0,0,1-.016-3.072ZM3.344-13.52h-6.72a4.419,4.419,0,0,0-2.288.624A4.5,4.5,0,0,0-7.312-11.24,4.464,4.464,0,0,0-7.92-8.96v6.7A4.464,4.464,0,0,0-7.312.024,4.5,4.5,0,0,0-5.664,1.68,4.419,4.419,0,0,0-3.376,2.3h6.72a4.5,4.5,0,0,0,2.3-.624A4.6,4.6,0,0,0,7.28.048a4.5,4.5,0,0,0,.624-2.3v-6.7a4.5,4.5,0,0,0-.624-2.3A4.6,4.6,0,0,0,5.648-12.9,4.5,4.5,0,0,0,3.344-13.52ZM6.336-2.256a2.939,2.939,0,0,1-.4,1.5A2.957,2.957,0,0,1,4.848.336a2.939,2.939,0,0,1-1.5.4h-6.72a2.9,2.9,0,0,1-1.5-.4A2.976,2.976,0,0,1-5.952-.752a2.939,2.939,0,0,1-.4-1.5v-6.7a2.939,2.939,0,0,1,.4-1.5,2.976,2.976,0,0,1,1.08-1.088,2.9,2.9,0,0,1,1.5-.4h6.72a2.939,2.939,0,0,1,1.5.4,2.957,2.957,0,0,1,1.088,1.088,2.939,2.939,0,0,1,.4,1.5ZM4.16-10.912a1.047,1.047,0,0,0-.768.32,1.047,1.047,0,0,0-.32.768,1.021,1.021,0,0,0,.32.76,1.061,1.061,0,0,0,.768.312,1.034,1.034,0,0,0,.76-.312,1.034,1.034,0,0,0,.312-.76,1.061,1.061,0,0,0-.312-.768A1.021,1.021,0,0,0,4.16-10.912Z"
+                                        transform="translate(7.92 13.52)" fill="#ffc312" />
+                                </svg>
+                            </li>
+                        </ul>
+                    </div>
+
+
+
+                    <!-- sidebar close button -->
+                    <div class="s1201_sidebar_close_btn_wrapper">
+                        <span class="s1201_sidebar_close_btn"><svg xmlns="http://www.w3.org/2000/svg" width="11"
+                                height="11" viewBox="0 0 11 11">
+                                <path id="cross"
+                                    d="M10.939.907,9.971-.061,5.439,4.472.907-.061-.061.907,4.472,5.439-.061,9.971l.968.968L5.439,6.406l4.532,4.533.968-.968L6.406,5.439Z"
+                                    transform="translate(0.061 0.061)" fill="#fff" />
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- search popup area -->
+        <div class="s0601_search_popup_main_wrapper">
+            <div class="s0601_search_popup_content_wrapper">
+                <div class="s0601_search_box_wrapper">
+                    <div class="s0601_popup_close_btn_wrapper">
+                        <span><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9">
+                                <g id="Cross" transform="translate(-964 -294)">
+                                    <path id="cross_2_" data-name="cross (2)"
+                                        d="M8.939.731,8.147-.061,4.439,3.648.731-.061-.061.731,3.648,4.439-.061,8.147l.792.792L4.439,5.23,8.147,8.939l.792-.792L5.23,4.439Z"
+                                        transform="translate(964.061 294.061)" fill="#fff" />
+                                </g>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="s0601_search_input_wrapper">
+                        <input class="s0601_search_input" type="text" placeholder="Search">
+                    </div>
+                </div>
+                <div class="s0601_search_result_wrapper">
+                    <ul class="s0601_search_result_all_items">
+                        <li class="s0601_search_result_item">Foam and memory foam materess</li>
+                        <li class="s0601_search_result_item">Foam and memory foam materess</li>
+                        <li class="s0601_search_result_item">Foam and memory foam materess</li>
+                        <li class="s0601_search_result_item">Foam and memory foam materess</li>
+                        <li class="s0601_search_result_item">Foam and memory foam materess</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
